@@ -1,7 +1,7 @@
 def Sacar_libro(prolibro,libro,cantidad):
         band=False
         for i in range(len(prolibro)):
-            if(libro.nombre == prolibro[i].get('Nombre') and libro.autor == prolibro[i].get('Autor')):
+            if(libro.get("Nombre") == prolibro[i].get('Nombre') and libro.get("Autor") == prolibro[i].get('Autor')):
                 band=True
                 if (prolibro[i].get('Cantidad')-cantidad)>=0:
                     prolibro[i]['Cantidad']-=cantidad
@@ -12,11 +12,14 @@ def Sacar_libro(prolibro,libro,cantidad):
         if(band==False):
             print("No tenemos el o los libros que necesita")
             return False
-def buscar(busqueda,libro,tipo):
+def buscar(busqueda,libro):
     busq=[]
-    print(tipo)
     for i in libro:
-        if busqueda == i.get(tipo):
+        if busqueda == i.get("Nombre"):
+            busq.append(i)
+        if busqueda == i.get("Autor"):
+            busq.append(i)
+        if busqueda == i.get("Genero"):
             busq.append(i)
     return busq
                 
@@ -40,7 +43,7 @@ class biblioteca:
                 existe=True
         if existe == False:
             libro._cantidad=cantidad
-            self.libro.append({"Nombre":libro.nombre,"Autor":libro.autor,"Genero":libro.genero,"Cantidad":libro._cantidad,"Precio":libro.precio})
+            self.libro.append({"Nombre":libro.nombre,"Autor":libro.autor,"Genero":libro.genero,"Cantidad":libro._cantidad,"Precio":libro.precio,"Etiqueta":len(self.libro)+1})
             print(self.libro[-1].values())
     def Prestar_libro(self,libro,cantidad=1):
         print("Cada alquilada cuesta 5000")
@@ -51,19 +54,12 @@ class biblioteca:
     def Vender_libros(self,libro,cantidad=1):
         gan=Sacar_libro(self.libro,libro,cantidad)
         if gan:
-            self.ganancias=(libro.precio*cantidad)
+            self.ganancias=(libro.get("Precio")*cantidad)
     def Cuantos_libros(self):
         return len(self.libro)
     def Buscar_libro(self,busqueda):
         busq = []
-        per=int(input("1. Nombre, 2. Autor, 3. Genero"))
-        print(per)
-        if per==1:
-            busq=buscar(busqueda,self.libro,'Nombre')
-        elif per==2:
-            busq=buscar(busqueda,self.libro,'Autor')
-        elif per==3:
-            busq=buscar(busqueda,self.libro,'Genero')
+        busq=buscar(busqueda,self.libro)
         return f'{busq}'
                 
     
