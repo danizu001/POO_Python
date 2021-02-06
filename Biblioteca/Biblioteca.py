@@ -15,9 +15,9 @@ def Sacar_libro(prolibro,libro,cantidad):
 def buscar(busqueda,libro,tipo):
     busq=[]
     print(tipo)
-    for i in range(len(libro)):
-        if busqueda == libro[i].get(tipo):
-            busq.append(libro[i])
+    for i in libro:
+        if busqueda == i.get(tipo):
+            busq.append(i)
     return busq
                 
 class biblioteca:
@@ -34,9 +34,9 @@ class biblioteca:
         print("La ganancia es de: " + str(self.ganancias))
     def Agregar_libro(self,libro,cantidad=1):
         existe=False
-        for i in range(len(self.libro)):
-            if(libro.nombre == self.libro[i].get('Nombre') and libro.autor == self.libro[i].get('Autor')):
-                self.libro[i]['Cantidad']+=cantidad
+        for i in self.libro:
+            if(libro.nombre == i.get('Nombre') and libro.autor == i.get('Autor')):
+                i['Cantidad']+=cantidad
                 existe=True
         if existe == False:
             libro._cantidad=cantidad
