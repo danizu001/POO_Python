@@ -12,6 +12,14 @@ def Sacar_libro(prolibro,libro,cantidad):
         if(band==False):
             print("No tenemos el o los libros que necesita")
             return False
+def buscar(busqueda,libro,tipo):
+    busq=[]
+    print(tipo)
+    for i in range(len(libro)):
+        if busqueda == libro[i].get(tipo):
+            busq.append(libro[i])
+    return busq
+                
 class biblioteca:
     def __init__(self,nombre):
         self.nombre=nombre
@@ -45,8 +53,18 @@ class biblioteca:
         if gan:
             self.ganancias=(libro.precio*cantidad)
     def Cuantos_libros(self):
-        pass
-    def Buscar_libro(self):
-        pass
+        return len(self.libro)
+    def Buscar_libro(self,busqueda):
+        busq = []
+        per=int(input("1. Nombre, 2. Autor, 3. Genero"))
+        print(per)
+        if per==1:
+            busq=buscar(busqueda,self.libro,'Nombre')
+        elif per==2:
+            busq=buscar(busqueda,self.libro,'Autor')
+        elif per==3:
+            busq=buscar(busqueda,self.libro,'Genero')
+        return f'{busq}'
+                
     
         
