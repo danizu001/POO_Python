@@ -1,0 +1,17 @@
+Para correr un ambiente en windows:
+
+python -m venv env // Crea un ambiente de nombre "env"
+env\Scripts\activate.bat // Activa el ambiente "env"
+pip install bokeh // Instala la librería bokeh
+pip freeze // Mira las librerías instaladas
+deactivate // Desactivar el ambiente en el que esta
+
+Para correr un ambiente en Linux:
+
+python -m venv env // Crea un ambiente de nombre "env"
+source env\Scripts\activate // Activa el ambiente "env"
+pip install bokeh // Instala la librería bokeh
+pip freeze // Mira las librerías instaladas
+deactivate // Desactivar el ambiente en el que esta
+
+
